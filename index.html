@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PONTO DAS AVES | Venda de Animais</title>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="icon" href="/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 /* ------------------------------------------- */
@@ -124,20 +129,23 @@ header nav ul li a:hover {
 }
 .logo {height:120px;}
 
-/* SEÇÃO HERO E BOTÕES */
+/* SEÇÃO HERO E BOTÕES: CORRIGIDA PARA PC */
 .hero-banner {
     height:60vh; 
     /* IMAGEM HERO BANNER */
     background-image:url('https://i.postimg.cc/sDskYkFW/IMG-20250928-WA0005.jpg'); 
     background-size:cover; 
     background-position:center; 
-    display:flex; 
-    align-items:center; 
-    justify-content:center; 
     position:relative;
+    /* Removido display:flex, align-items:center e justify-content:center para PC */
 }
 .hero-banner::after {content:''; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8);}
-.hero-text {position:relative; z-index:1; text-align:center;}
+.hero-text {
+    position:relative; 
+    z-index:1; 
+    text-align:center;
+    padding-top: 15vh; /* Adicionado um padding para centralizar o texto verticalmente de forma simples no PC */
+}
 .hero-text h2 {font-size:3em; margin-bottom:10px; color:#fff !important; text-shadow: 2px 2px 5px #000;} /* Sombra maior no título do banner */
 .hero-text p {font-size:1.3em; margin-bottom:20px; color:#fff !important; text-shadow: 1px 1px 3px #000;} 
 
@@ -240,6 +248,17 @@ footer {
         height: 80px; /* Reduz o tamanho do logo */
         margin-bottom: 10px;
     }
+    
+    /* HERO BANNER: Retornamos o flex para que o texto fique centralizado no celular */
+    .hero-banner {
+        display:flex; 
+        align-items:center; 
+        justify-content:center; 
+    }
+    .hero-text {
+        padding-top: 0; /* Remove o padding extra para centralizar pelo flex */
+    }
+
 
     /* CARDS: Ocupam quase toda a largura para se empilharem */
     .produto-card {
