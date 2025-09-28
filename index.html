@@ -5,12 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PONTO DAS AVES | Venda de Animais</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-<link rel="icon" href="/favicon.ico">
 <style>
 /* ------------------------------------------- */
 /* PALETA DE CORES DEFINITIVA */
@@ -34,6 +28,424 @@
 
 body {
     font-family: 'Montserrat', sans-serif; 
+    color: var(--cor-texto-claro) !important; 
+    background-color: var(--cor-principal) !important;
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* Força todas as seções principais a ter fundo preto absoluto e texto branco */
+main, .catalogo, .sobre {
+    background-color: var(--cor-principal) !important;
+    color: var(--cor-texto-claro) !important; 
+}
+
+/* ------------------------------------------- */
+/* TÍTULOS E LINKS */
+/* ------------------------------------------- */
+a {text-decoration:none; color:inherit;}
+.container {max-width:1200px; margin:0 auto; padding:0 20px;}
+
+/* Títulos de seção grandes em Amarelo */
+h2 {
+    color: var(--cor-destaque) !important;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 1); 
+}
+/* Títulos de card em Amarelo */
+.produto-card h4 {
+    color: var(--cor-destaque) !important;
+    text-shadow: var(--sombra-texto); 
+}
+/* Outros títulos (h3) em Branco */
+h3 {
+    margin-bottom:20px; 
+    text-align:center; 
+    color: var(--cor-texto-claro) !important;
+    text-shadow: var(--sombra-texto); 
+}
+/* Texto descritivo dos cards com sombra */
+.produto-card p {
+    text-shadow: var(--sombra-texto); 
+}
+
+
+/* ------------------------------------------- */
+/* CSS ANTI MODO ESCURO (FORÇA AS CORES ORIGINAIS) */
+/* ------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+    /* GARANTE QUE O FUNDO SEJA SEMPRE PRETO ABSOLUTO E O TEXTO SEMPRE BRANCO */
+    html, body, main, .catalogo, .sobre, .hero-banner, footer, 
+    .produto-card, .sobre .secao div, .footer-info p, header {
+        background-color: var(--cor-principal) !important;
+        color: var(--cor-texto-claro) !important;
+    }
+
+    /* GARANTE QUE OS LINKS DO CABEÇALHO SEJAM BRANCOS */
+    header nav ul li a {
+        color: var(--cor-texto-claro) !important;
+        text-shadow: var(--sombra-texto);
+    }
+    
+    /* Garante que os títulos coloridos permaneçam legíveis */
+    h2, .produto-card h4 {
+        color: var(--cor-destaque) !important;
+    }
+
+    /* MANTÉM O TEXTO CLARO NO BANNER */
+    .hero-text h2, .hero-text p {
+        color: #fff !important;
+        text-shadow: 1px 1px 3px #000;
+    }
+}
+/* ------------------------------------------- */
+
+
+/* CABEÇALHO PRETO ABSOLUTO com borda amarela */
+header {
+    background-color: var(--cor-principal) !important; 
+    padding:20px 0; 
+    color: var(--cor-texto-claro); 
+    border-bottom: 5px solid var(--cor-destaque);
+}
+header .header-content {display:flex; justify-content:space-between; align-items:center;}
+header nav ul {list-style:none; display:flex;}
+/* Links do cabeçalho BRANCOS */
+header nav ul li a {
+    padding:10px 15px; 
+    transition:0.3s; 
+    color: var(--cor-texto-claro) !important; 
+    font-weight:bold;
+    text-shadow: var(--sombra-texto); /* Sombra nos links do cabeçalho */
+}
+header nav ul li a:hover {
+    background-color:rgba(255,255,255,0.1); 
+    border-radius:5px;
+    color: var(--cor-destaque) !important; 
+}
+.logo {height:120px;}
+
+/* SEÇÃO HERO E BOTÕES */
+.hero-banner {
+    height:60vh; 
+    /* IMAGEM HERO BANNER */
+    background-image:url('https://i.postimg.cc/sDskYkFW/IMG-20250928-WA0005.jpg'); 
+    background-size:cover; 
+    background-position:center; 
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    position:relative;
+}
+.hero-banner::after {content:''; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8);}
+.hero-text {position:relative; z-index:1; text-align:center;}
+.hero-text h2 {font-size:3em; margin-bottom:10px; color:#fff !important; text-shadow: 2px 2px 5px #000;} /* Sombra maior no título do banner */
+.hero-text p {font-size:1.3em; margin-bottom:20px; color:#fff !important; text-shadow: 1px 1px 3px #000;} 
+
+.btn {padding:12px 25px; border-radius:5px; font-weight:bold; transition:0.3s; cursor:pointer; display:inline-block; text-align:center;}
+.btn-destaque {background-color: var(--cor-destaque); color: var(--cor-principal);} 
+.btn-destaque:hover {transform:scale(1.05);}
+
+/* CATÁLOGO E CARDS ESCUROS COM DETALHES AMARELOS */
+.catalogo {
+    padding:60px 0; 
+    display:flex; 
+    flex-wrap:wrap; 
+    justify-content:center; 
+    gap:30px;
+}
+.produto-card {
+    background-color: var(--cor-card); 
+    border-radius:10px; 
+    overflow:hidden; 
+    width:300px; 
+    transition: transform 0.3s; 
+    perspective:1000px; 
+    cursor:pointer;
+    /* Borda e Sombra Amarela FORTES (Efeito Janela) */
+    border: 3px solid var(--cor-destaque); 
+    box-shadow: 0 0 20px rgba(255, 195, 0, 0.7); 
+    color: var(--cor-texto-claro) !important; 
+}
+.produto-card-inner {transition: transform 0.5s; transform-style: preserve-3d;}
+.produto-card img, .produto-card h4, .produto-card p {display:block;}
+.produto-card img {width:100%; height:250px; object-fit:cover; border-bottom:1px solid var(--cor-destaque);}
+.produto-card p {padding:0 10px 10px 10px; color: var(--cor-texto-claro) !important; font-size:0.9em;}
+
+.produto-card .ver-mais {
+    display:block; 
+    margin:10px; 
+    padding:10px; 
+    text-align:center; 
+    border-radius:5px;
+    background-color: var(--cor-destaque); 
+    color: var(--cor-principal); 
+    font-weight: bold;
+}
+.produto-card .ver-mais:hover {
+    background-color: var(--cor-texto-claro); 
+    color: var(--cor-principal);
+}
+
+.produto-card:hover {
+    box-shadow: 0 0 35px rgba(255, 195, 0, 0.9); /* Sombra ainda mais forte no hover */
+}
+.produto-card:hover .produto-card-inner {transform: rotateY(10deg) rotateX(5deg);}
+.produto-card:active .produto-card-inner {transform: rotateY(10deg) rotateX(5deg);}
+
+/* SOBRE NÓS ESCURO COM DETALHES AMARELOS */
+.sobre {
+    padding:60px 20px;
+}
+.sobre .secao {display:flex; align-items:center; gap:40px; margin-bottom:50px;}
+.sobre .secao:nth-child(even){flex-direction:row-reverse;}
+.sobre .secao img {width:45%; height:350px; object-fit:cover; border-radius:10px; transition: transform 0.5s; border: 3px solid var(--cor-destaque);}
+.sobre .secao img:hover{transform:scale(1.05) rotateX(5deg) rotateY(5deg);}
+.sobre .secao div{width:55%; color: var(--cor-texto-claro) !important; text-shadow: var(--sombra-texto);} 
+
+/* RODAPÉ PRETO ABSOLUTO */
+footer {
+    background-color:#000 !important; 
+    color: var(--cor-texto-claro) !important; 
+    text-align:center; 
+    padding:30px 20px; 
+    font-size:0.9em;
+}
+.footer-info p{margin:5px; color: var(--cor-texto-claro) !important; text-shadow: var(--sombra-texto);}
+.social a {color:var(--cor-destaque); margin:0 5px; font-weight:bold;}
+
+/* BOTÃO FLUTUANTE */
+.whatsapp-btn {position:fixed; bottom:20px; right:20px; background-color: var(--cor-botao-whats); color:white; padding:10px 15px; border-radius:50px; font-weight:bold; text-decoration:none; box-shadow:0 4px 8px rgba(0,0,0,0.4); transition:0.3s;}
+.whatsapp-btn:hover{transform:scale(1.05);}
+
+/* ------------------------------------------- */
+/* RESPONSIVIDADE (OTIMIZAÇÃO PARA CELULAR) */
+/* ------------------------------------------- */
+@media(max-width:768px){
+    /* CABEÇALHO: Empilha e centraliza logo e menu */
+    .header-content{
+        flex-direction:column;
+        text-align:center;
+    }
+    /* Menu Fica um ao lado do outro, mas centralizado */
+    header nav ul {
+        justify-content: center;
+        flex-wrap: wrap; /* Permite quebrar linha se a tela for muito pequena */
+    }
+    header nav ul li a {
+        padding: 5px 8px; /* Reduz o padding dos links do menu */
+        font-size: 0.9em;
+    }
+    /* Logo menor para caber na tela */
+    .logo {
+        height: 80px; /* Reduz o tamanho do logo */
+        margin-bottom: 10px;
+    }
+
+    /* CARDS: Ocupam quase toda a largura para se empilharem */
+    .produto-card {
+        width: 90%; /* Ocupa a maior parte da tela, com margem lateral */
+        max-width: 400px; /* Limite de largura para tablets */
+    }
+
+    /* SEÇÕES SOBRE NÓS: Empilha imagem e texto */
+    .sobre .secao{
+        flex-direction:column;
+    }
+    .sobre .secao:nth-child(even){
+        flex-direction:column; /* Garante que a ordem seja a mesma em todas as seções no celular */
+    }
+    .sobre .secao img, .sobre .secao div{
+        width:90%; /* Ocupa a maior parte da tela */
+    }
+    
+    /* TEXTO DO BANNER: Reduz o tamanho da fonte do título principal */
+    .hero-text h2 {
+        font-size: 2.5em; 
+    }
+    .hero-text p {
+        font-size: 1.1em;
+    }
+}
+</style>
+</head>
+<body style="background-color: #000 !important; color: #f5f5f5 !important;">
+
+<header>
+<div class="container header-content">
+<img src="https://i.postimg.cc/sg2b85gz/LOGO.png" alt="Ponto das Aves Logo" class="logo">
+<nav>
+<ul>
+<li><a href="#inicio">Início</a></li>
+<li><a href="#catalogo">Catálogo</a></li>
+<li><a href="#sobre">Sobre Nós</a></li>
+<li><a href="#contato">Contato</a></li>
+<li><a href="https://www.instagram.com/ponto_das_aves" target="_blank">Instagram</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<main>
+<section id="inicio" class="hero-banner">
+<div class="hero-text">
+<h2>O Seu Ponto de Referência em Animais Vivos</h2>
+<p>Caprinos, Bovinos, Ovinos e Aves com qualidade e saúde.</p>
+<a href="#" class="btn btn-destaque" id="btn-hero-whatsapp">Chame no WhatsApp!</a>
+</div>
+</section>
+
+<section id="catalogo" class="catalogo">
+<div class="produto-card">
+<div class="produto-card-inner">
+<img src="https://i.postimg.cc/3wzM2W7d/IMG-20250928-WA0001.jpg" alt="Gado Bovino">
+<h4>Bovinos (Bezerros, Novilhos e Vacas)</h4>
+<p>Bezerros, Novilhos e Vacas para corte e leite.<br><strong>Melhor preço + entrega em quase todo MG!</strong></p>
+<a href="#" class="btn ver-mais" data-animal="Bovinos (Bezerros, Novilhos e Vacas)">Ver Mais</a>
+</div>
+</div>
+
+<div class="produto-card">
+<div class="produto-card-inner">
+<img src="https://i.postimg.cc/m2j08mR7/IMG-20250928-WA0007.jpg" alt="Ovinos">
+<h4>Ovinos (Carneiros e Ovelhas)</h4>
+<p>Carneiros e ovelhas de raças especializadas. Excelente para cria e abate. Lotes sob consulta.</p>
+<a href="#" class="btn ver-mais" data-animal="Ovinos (Carneiros e Ovelhas)">Ver Mais</a>
+</div>
+</div>
+
+<div class="produto-card">
+<div class="produto-card-inner">
+<img src="https://i.postimg.cc/bNp7x7Xk/IMG-20250928-WA0003.jpg" alt="Cabritos, Bodes e Cabras">
+<h4>Caprinos (Bodes, Cabras e Cabritos)</h4>
+<p>Cabritos, Bodes e Cabras saudáveis, ideais para criação e venda.<br><strong>Melhor preço + entrega em quase todo MG!</strong></p>
+<a href="#" class="btn ver-mais" data-animal="Caprinos (Bodes, Cabras e Cabritos)">Ver Mais</a>
+</div>
+</div>
+
+<div class="produto-card">
+<div class="produto-card-inner">
+<img src="https://i.postimg.cc/Fsp2DTmn/IMG-20250928-WA0010.jpg" alt="Galinhas e Frangos">
+<h4>Galinhas e Frangos Caipiras</h4>
+<p>Galinhas poedeiras, frangos de corte. Qualidade superior para seu plantel.</p>
+<a href="#" class="btn ver-mais" data-animal="Galinhas e Frangos Caipiras">Ver Mais</a>
+</div>
+</div>
+
+<div class="produto-card">
+<div class="produto-card-inner">
+<img src="https://i.postimg.cc/zX790x56/IMG-20250928-WA0011.jpg" alt="Galos Caipiras Reprodutores">
+<h4>Galos Caipiras e Reprodutores</h4>
+<p>Galos de peso e beleza. Reprodutores de raça e caipiras de alta qualidade.</p>
+<a href="#" class="btn ver-mais" data-animal="Galos Caipiras e Reprodutores">Ver Mais</a>
+</div>
+</div>
+
+<div class="produto-card">
+<div class="produto-card-inner">
+<img src="https://i.postimg.cc/SNkB6B0W/IMG-20250928-WA0004.jpg" alt="Aves Ornamentais (Faisão)">
+<h4>Aves Ornamentais (Faisão, Pavão, etc)</h4>
+<p>Faisões, pavões e outras aves exóticas para embelezar sua propriedade. Disponibilidade limitada.</p>
+<a href="#" class="btn ver-mais" data-animal="Aves Ornamentais (Faisão, Pavão, etc)">Ver Mais</a>
+</div>
+</div>
+
+<div class="produto-card">
+<div class="produto-card-inner">
+<img src="https://i.postimg.cc/FHKwq0Hh/IMG-4428.jpg" alt="Pombos Brancos">
+<h4>Pombos Brancos de Voo</h4>
+<p>Pombos brancos de raça, ideais para eventos e solturas. Consulte preços e faça sua reserva.</p>
+<a href="#" class="btn ver-mais" data-animal="Pombos Brancos de Voo">Ver Mais</a>
+</div>
+</div>
+
+
+</section>
+
+<section id="sobre" class="sobre">
+<h2>Sobre o Ponto das Aves</h2>
+<div class="secao">
+<img src="https://i.postimg.cc/qMw9j10w/IMG-20250928-WA0008.jpg" alt="Fazenda">
+<div>
+<h3>Nossa História</h3>
+<p>Projeto familiar focado em aves caipiras, expandindo para ovinos, caprinos e bovinos. Garantimos sanidade e procedência em todos os nossos animais.</p>
+</div>
+</div>
+<div class="secao">
+<img src="https://i.postimg.cc/52tDG82x/IMG-20250928-WA0016.jpg" alt="Aves Domésticas">
+<div>
+<h3>Nossa Missão</h3>
+<p>Ser referência em qualidade e sanidade, garantindo confiança e sucesso para produtores rurais. Vendemos saúde e tranquilidade.</p></div>
+</div>
+</section>
+</main>
+
+<footer id="contato">
+<div class="footer-info">
+<p>&copy; 2024 PONTO DAS AVES. Todos os direitos reservados.</p>
+<p>Localização: Rua Para de Minas, 603, Sta. Luzia, Minas Gerais</p>
+<p>Horário: Seg-Sex 9:00-17:00 | Sáb 9:00-12:00 | Almoço 12:00-13:30</p>
+<p>Instagram: <a href="https://www.instagram.com/ponto_das_aves" target="_blank">@ponto_das_aves</a></p>
+</div>
+</footer>
+
+<a href="#" id="whatsapp-float" class="whatsapp-btn">Fale Agora!</a>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  // O ÚNICO LUGAR ONDE VOCÊ PRECISA MUDAR O TELEFONE (SE NECESSÁRIO)
+  const numeroWhatsapp = '553172270504'; 
+
+  const verMaisBtns = document.querySelectorAll('.ver-mais');
+  
+  // Funções para criar o link do WhatsApp (usa api.whatsapp.com/send)
+  function createWhatsAppLink(message) {
+      const msg = encodeURIComponent(message);
+      return `https://api.whatsapp.com/send?phone=${numeroWhatsapp}&text=${msg}`;
+  }
+
+  verMaisBtns.forEach(btn => {
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      
+      const animal = btn.dataset.animal; 
+      // Mensagem Específica do Catálogo
+      const message = `Olá! Vim pelo site do Ponto das Aves e gostaria de saber mais sobre a disponibilidade e preço de: *${animal}*.`;
+      
+      // Abre em nova aba
+      window.open(createWhatsAppLink(message), '_blank');
+    });
+  });
+ 
+  // Mensagem Geral (Para o botão do Banner e o Flutuante)
+  const msgGeral = 'Olá! Vim pelo site do Ponto das Aves e gostaria de informações gerais.';
+
+  // Aplica o link aos botões com função de click
+  
+  const btnHero = document.getElementById('btn-hero-whatsapp');
+  const btnFloat = document.getElementById('whatsapp-float');
+  
+  btnHero.addEventListener('click', function(e){
+    e.preventDefault();
+    // Abre em nova aba
+    window.open(createWhatsAppLink(msgGeral), '_blank');
+  });
+
+  btnFloat.addEventListener('click', function(e){
+    e.preventDefault();
+    // Abre em nova aba
+    window.open(createWhatsAppLink(msgGeral), '_blank');
+  });
+
+  // Efeito 3D em celular (Touch)
+  document.querySelectorAll('.produto-card').forEach(card=>{
+    card.addEventListener('touchstart',()=>{card.querySelector('.produto-card-inner').style.transform='rotateY(10deg) rotateX(5deg)';});
+    card.addEventListener('touchend',()=>{card.querySelector('.produto-card-inner').style.transform='rotateY(0deg) rotateX(0deg)';});
+  });
+});
+</script>
+
+</body>
+</html>
     color: var(--cor-texto-claro) !important; 
     background-color: var(--cor-principal) !important;
     margin: 0;
